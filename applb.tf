@@ -14,11 +14,11 @@ resource "aws_lb" "alb" {
 
 //Target Group
 resource "aws_lb_target_group" "albtg" {
-  name     = "tf-example-lb-tg"
-  port     = 80
-  protocol = "HTTP"
+  name        = "tf-example-lb-tg"
+  port        = 80
+  protocol    = "HTTP"
   target_type = "instance"
-  vpc_id   = aws_vpc.main.id
+  vpc_id      = aws_vpc.main.id
 
   health_check {
     healthy_threshold   = 3
@@ -34,7 +34,7 @@ resource "aws_lb_target_group_attachment" "front_end" {
   target_group_arn = aws_lb_target_group.albtg.arn
   target_id        = aws_instance.web[count.index].id
   port             = 80
-  count = 2
+  count            = 2
 }
 
 //Listener
