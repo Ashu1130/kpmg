@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "terraformbackend3"
-    key    = "statefile/backend"
+    bucket = "backendkpmg"
+    key    = "terraform/statefile"
     region = "ap-south-1"
   }
 }
