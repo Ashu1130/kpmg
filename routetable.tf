@@ -28,11 +28,11 @@ resource "aws_route_table" "pri-rt" {
     Name = "pri-rt"
   }
 }
-resource "aws_route_table_association" "rt_associate_private" {
+resource "aws_route_table_association" "rt_associate_private1" {
   subnet_id      = aws_subnet.database-subnet-1.id
   route_table_id = aws_route_table.pri-rt.id
 }
-resource "aws_route_table_association" "rt_associate_private" {
+resource "aws_route_table_association" "rt_associate_private2" {
   subnet_id      = aws_subnet.database-subnet-2.id
   route_table_id = aws_route_table.pri-rt.id
 }
