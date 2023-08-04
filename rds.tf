@@ -14,8 +14,8 @@ resource "aws_db_instance" "default" {
   engine_version         = "8.0.20"
   instance_class         = "db.t2.micro"
   multi_az               = true
-  username               = "username"
-  password               = "password"
+  username               = var.rdsusename
+  password               = var.rdspass
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.database-sg.id]
 }

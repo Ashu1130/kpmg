@@ -12,3 +12,10 @@ variable "Web_PUB_KEY" {
 variable "Web_PRIV_KEY" {
   default = "webkey"
 }
+variable "rdsusename" {
+  default = "rdsadmin"
+}
+
+variable "rdspass" {
+  default = "adminpass"
+}
