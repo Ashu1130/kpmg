@@ -55,11 +55,11 @@ resource "aws_security_group" "database-sg" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description     = "allow traffic from application layer"
+    description     = "allow traffic from web-server"
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb-sg.id]
+    security_groups = [aws_security_group.web-sg.id]
   }
   egress {
     from_port   = 0
