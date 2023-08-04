@@ -37,7 +37,7 @@ resource "aws_security_group" "web-sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    csecurity_groups = [aws_security_group.alb-sg.id]
+    security_groups = [aws_security_group.alb-sg.id]
   }
 
   egress {
