@@ -1,22 +1,43 @@
-resource "aws_security_group" "allow_tls" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
+resource "aws_security_group" "alb-sg" {
+  name = "alb-listner"
+  description = "listen from outside"
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+resource "aws_security_group" "web-sg" {
+  name        = "web-sg"
+  description = "web-sg"
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description = "TLS from VPC"
+    description = "ssh from my IP"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.myip]
   }
 
   ingress {
-    description = "TLS from VPC"
+    description = "listen from alb"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_security_group.alb-sg]
   }
 
   egress {
@@ -26,9 +47,6 @@ resource "aws_security_group" "allow_tls" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "allow_tls"
-  }
 }
 
 resource "aws_security_group" "database-sg" {

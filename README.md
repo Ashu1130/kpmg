@@ -7,10 +7,15 @@ This repository contains Terraform code to create a 3-tier AWS architecture with
 
 The infrastructure consists of the following components:
 
-1. An Application Load Balancer (ALB) - Public-facing load balancer to distribute traffic to EC2 instances in the web tier.
-2. EC2 Instances (Web Tier) - Instances running Apache web servers in a public subnet.
-3. RDS Database - A MySQL database running on Amazon RDS, placed in a private subnet, accessible only by EC2 instances in the private subnet via the NAT Gateway.
-
+1. Virtual Private Cloud (VPC) - A dedicated network environment in AWS to launch resources.
+2. Internet Gateway (IGW) - A gateway that enables communication between instances in the VPC and the internet.
+3. Public Subnet - A subnet with a route to the Internet Gateway, containing the Application Load Balancer (ALB).
+4. Private Subnet - A subnet with no direct route to the internet, containing the RDS database.
+5. An Application Load Balancer (ALB) - Public-facing load balancer to distribute traffic to EC2 instances in the web tier.
+6. EC2 Instances (Web Tier) - Instances running Apache web servers in a public subnet.
+7. NAT Gateway - A network address translation (NAT) gateway in a public subnet to allow EC2 instances in the private subnet to access the internet.
+8. RDS Database - A MySQL database running on Amazon RDS, placed in a private subnet, accessible only by EC2 instances in the private subnet via the NAT Gateway.
+9. Security Groups - Configured to control inbound and outbound traffic to EC2 instances and the RDS database.
 ## Prerequisites
 
 Before deploying this infrastructure, you need to have the following prerequisites:

@@ -19,3 +19,7 @@ variable "rdsusename" {
 variable "rdspass" {
   default = "adminpass"
 }
+
+variable "myip" {
+  default = "192.168.59.1"
+}
