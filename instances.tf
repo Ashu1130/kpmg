@@ -10,8 +10,8 @@ resource "aws_instance" "web" {
   subnet_id                   = aws_subnet.public[count.index].id
   vpc_security_group_ids      = [aws_security_group.web-sg.id]
   associate_public_ip_address = true
-  count                       = 2
   user_data                   = file("apache.sh")
+  count                       = 2
 
   tags = {
     Name = "WebServer"
