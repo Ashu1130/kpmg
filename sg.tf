@@ -58,7 +58,7 @@ resource "aws_security_group" "database-sg" {
     description     = "allow traffic from web-server"
     from_port       = 3306
     to_port         = 3306
-    protocol        = "tcp"
+    protocol        = "-1"
     security_groups = [aws_security_group.web-sg.id]
   }
   egress {

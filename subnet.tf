@@ -9,16 +9,6 @@ resource "aws_subnet" "public" {
   }
 }
 
-data "aws_subnets" "sid" {
-  filter {
-    name   = "vpc-id"
-    values = [aws_vpc.main.id]
-  }
-
-  tags = {
-    Tier = "Public"
-  }
-}
 resource "aws_subnet" "database-subnet-1" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.21.0/24"
